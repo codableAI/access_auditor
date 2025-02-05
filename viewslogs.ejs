@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Logs</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="fade-in">
+  <%- include('partials/header') %>
+  <div class="container">
+    <h2>Logs</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>AI System</th>
+        <th>Data Accessed</th>
+        <th>Purpose</th>
+        <th>User Identifier</th>
+        <th>Timestamp</th>
+      </tr>
+      <% logs.forEach(function(log){ %>
+        <tr>
+          <td><%= log.id %></td>
+          <td><%= log.aiSystem %></td>
+          <td><%= log.dataAccessed.join(', ') %></td>
+          <td><%= log.purpose.join(', ') %></td>
+          <td><%= log.userIdentifier || 'N/A' %></td>
+          <td><%= new Date(log.timestamp).toISOString() %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>
