@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API Keys</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="fade-in">
+  <%- include('partials/header') %>
+  <div class="container">
+    <h2>API Keys</h2>
+    <a href="/admin/apikeys/new" class="button">Create New API Key</a>
+    <table>
+      <tr>
+        <th>Key ID</th>
+        <th>Scopes</th>
+        <th>Expiration</th>
+        <th>Rate Limit</th>
+        <th>Owner</th>
+        <th>Actions</th>
+      </tr>
+      <% keys.forEach(function(key){ %>
+        <tr>
+          <td><%= key.keyId %></td>
+          <td><%= key.scopes.join(', ') %></td>
+          <td><%= key.expiration ? new Date(key.expiration).toISOString() : 'Never' %></td>
+          <td><%= key.rateLimit || 'N/A' %></td>
+          <td><%= key.owner %></td>
+          <td>
+            <form action="/admin/apikeys/delete/<%= key.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this API key?');">
+              <button type="submit" class="button" style="background-color: #c0392b;">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>
