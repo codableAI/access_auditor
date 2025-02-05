@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Audits</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="fade-in">
+  <%- include('partials/header') %>
+  <div class="container">
+    <h2>Audits</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Scheduled At</th>
+        <th>Executed At</th>
+        <th>Status</th>
+        <th>Criteria</th>
+        <th>Analysis</th>
+      </tr>
+      <% audits.forEach(function(audit){ %>
+        <tr>
+          <td><%= audit.id %></td>
+          <td><%= audit.scheduledAt ? new Date(audit.scheduledAt).toISOString() : '' %></td>
+          <td><%= audit.executedAt ? new Date(audit.executedAt).toISOString() : 'Pending' %></td>
+          <td><%= audit.status %></td>
+          <td><pre><%= JSON.stringify(audit.criteria, null, 2) %></pre></td>
+          <td><%= audit.analysis || '' %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>
