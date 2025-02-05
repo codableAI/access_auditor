@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="fade-in">
+  <%- include('partials/header') %>
+  <div class="container">
+    <h2>Admin Settings</h2>
+    <form method="POST" action="/admin/settings">
+      <h3>Site Settings</h3>
+      <div class="form-group">
+        <label>Site Title:</label>
+        <input type="text" name="siteTitle" value="<%= settings.siteTitle %>">
+      </div>
+      <div class="form-group">
+        <label>Site Background:</label>
+        <input type="text" name="siteBackground" value="<%= settings.siteBackground %>">
+      </div>
+      <div class="form-group">
+        <label>Topbar Color:</label>
+        <input type="text" name="topbarColor" value="<%= settings.topbarColor %>">
+      </div>
+      <div class="form-group">
+        <label>OpenAI API Key:</label>
+        <input type="text" name="openAIKey" value="<%= settings.openAIKey %>">
+      </div>
+      <div class="form-group">
+        <label>Azure OpenAI URL:</label>
+        <input type="text" name="azureOpenAIUrl" value="<%= settings.azureOpenAIUrl %>">
+      </div>
+      <div class="form-group">
+        <label>Azure OpenAI Key:</label>
+        <input type="text" name="azureOpenAIKey" value="<%= settings.azureOpenAIKey %>">
+      </div>
+      <div class="form-group">
+        <label>Registration Enabled:</label>
+        <input type="checkbox" name="registrationEnabled" <%= settings.registrationEnabled ? 'checked' : '' %>>
+      </div>
+      <div class="form-group">
+        <label>Azure Blob Connection String (optional):</label>
+        <input type="text" name="azureBlobConnectionString" value="<%= settings.azureBlobConnectionString %>">
+      </div>
+      <h3>Application Settings (requires restart)</h3>
+      <div class="form-group">
+        <label>App Port:</label>
+        <input type="number" name="appPort" value="<%= appConfig.port %>">
+      </div>
+      <div class="form-group">
+        <label>Session Secret:</label>
+        <input type="text" name="sessionSecret" value="<%= appConfig.sessionSecret %>">
+      </div>
+      <div class="form-group">
+        <label>Mongo URI (unused):</label>
+        <input type="text" name="mongoUri" value="<%= appConfig.mongoUri %>">
+      </div>
+      <button type="submit" class="button">Save Settings</button>
+    </form>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>
